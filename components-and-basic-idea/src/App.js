@@ -2,6 +2,7 @@ import "./App.css";
 import { Header } from "./components/Header";
 // import  Header from "./components/Header";
 import {BookList}  from "./components/BookList"
+import { Timer } from "./components/Timer";
 
 function App() {
 	const books = [
@@ -90,6 +91,9 @@ function App() {
       <header className="App-header">
         <h1> <span className="fancy-text">Hello</span>  React</h1>
 		<Header>Book Library</Header>
+		<Timer start={1} />
+		<Timer start={30} />
+		<Timer start={85} />
 		<BookList bookList={books}/>
       </header>
     </div>
