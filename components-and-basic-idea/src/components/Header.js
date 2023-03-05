@@ -1,7 +1,7 @@
 import React from "react";
 
 export const Header= (props)=>{
-const reactElement= <h1>Hello from JSX!</h1>;
+const reactElement= <h1>{props.children}</h1>;
 return  reactElement
 }
 
