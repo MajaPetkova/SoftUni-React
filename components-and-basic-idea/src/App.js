@@ -94,7 +94,7 @@ function App() {
         <h1> <span className="fancy-text">Hello</span>  React</h1>
 		<Header>Book Library</Header>
 		<Clicker/>
-		<Counter start={8}/>
+		<Counter/>
 		<Timer start={1} />
 		<Timer start={30} />
 		<Timer start={85} />
