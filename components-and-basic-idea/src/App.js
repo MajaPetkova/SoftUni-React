@@ -4,6 +4,7 @@ import { Header } from "./components/Header";
 import {BookList}  from "./components/BookList"
 import { Timer } from "./components/Timer";
 import { Clicker } from "./components/Clicker";
+import { Counter } from "./components/Counter";
 
 function App() {
 	const books = [
@@ -93,6 +94,7 @@ function App() {
         <h1> <span className="fancy-text">Hello</span>  React</h1>
 		<Header>Book Library</Header>
 		<Clicker/>
+		<Counter start={8}/>
 		<Timer start={1} />
 		<Timer start={30} />
 		<Timer start={85} />
