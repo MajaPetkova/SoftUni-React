@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useEffect } from "react";
+import styles from "./Book.module.css"
 
 export const Book = (props) => {
   const [highlighted, setHighlighted] = useState(false);
@@ -26,17 +27,18 @@ export const Book = (props) => {
   }
 
   if (marked) {
-    style.background = "green";
+    // style.background = "green";
+    return <h3>Deleted</h3>
   }
   return (
-    <li style={style}>
+    <li style={style} className= {styles["article-color"]}>
       <article>
         <h3>Title: {props.title}</h3>
         <p>Description: {props.description}</p>
         <footer>
             <button onClick={clickHandler}>Highlight</button>
             <button onClick={deleteHandler}>Delete</button>
-          <span>Author: {props.author}</span>
+          <span className={styles.author}>Author: {props.author}</span>
         </footer>
       </article>
     </li>

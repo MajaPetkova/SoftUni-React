@@ -1,0 +1,11 @@
+article footer{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(94, 89, 89);
+}
+.article-color{
+    color: bisque
+}
+.author{
+    display: block;
+    color: rgb(255, 196, 0);
+}
