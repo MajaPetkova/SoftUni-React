@@ -1,5 +1,6 @@
 import { Book } from "./Book";
 
+
 export const BookList = (props) => {
     
     
@@ -23,8 +24,9 @@ export const BookList = (props) => {
 
 // const bookElements= props.books.map(b =><Book {...b}/>)
 
+   
   return <ul>
     <h2>Book Library</h2>
-    {props.books.map(b =><Book {...b}/>)}
+    {props.books.map((b, i) =><Book key= {i} {...b}/>)}
     </ul>;
 };
