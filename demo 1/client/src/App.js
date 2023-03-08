@@ -1,29 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./static/styles.css">
-  <title>Todo List</title>
-</head>
+import './App.css';
 
-<body>
-
-  <!-- Navigation header -->
+function App() {
+  return (
+    <div className="App">
+        {/* <!-- Navigation header --> */}
   <header class="navigation-header">
     <span class="navigation-logo">
-      <img src="./static/images/todo-icon.png" alt="todo-logo">
+      <img src="/images/todo-icon.png" alt="todo-logo"/>
     </span>
     <span class="spacer"></span>
     <span class="navigation-description">Todo List</span>
   </header>
 
-  <!-- Main content -->
+  {/* <!-- Main content --> */}
   <main class="main">
 
-    <!-- Section container -->
+    {/* <!-- Section container --> */}
     <section class="todo-list-container">
       <h1>Todo List</h1>
 
@@ -33,14 +26,14 @@
 
       <div class="table-wrapper">
 
-        <!-- Loading spinner - show the load spinner when fetching the data from the server-->
+        {/* <!-- Loading spinner - show the load spinner when fetching the data from the server--> */}
         <div class="loading-container">
           <div class="loading-spinner">
             <span class="loading-spinner-text">Loading</span>
           </div>
         </div>
 
-        <!-- Todo list table -->
+        {/* <!-- Todo list table --> */}
         <table class="table">
           <thead>
             <tr>
@@ -51,7 +44,7 @@
           </thead>
           <tbody>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo is-completed">
               <td>Give dog a bath</td>
               <td>Complete</td>
@@ -60,7 +53,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo is-completed">
               <td>Do laundry</td>
               <td>Complete</td>
@@ -69,7 +62,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo">
               <td>Vacuum floor</td>
               <td>Incomplete</td>
@@ -78,7 +71,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo is-completed">
               <td>Feed cat</td>
               <td>Complete</td>
@@ -87,7 +80,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo">
               <td>Change light bulbs</td>
               <td>Incomplete</td>
@@ -96,7 +89,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo is-completed">
               <td>Feed cat</td>
               <td>Complete</td>
@@ -105,7 +98,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo">
               <td>Change light bulbs</td>
               <td>Incomplete</td>
@@ -114,7 +107,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo is-completed">
               <td>Go to Store</td>
               <td>Completed</td>
@@ -123,7 +116,7 @@
               </td>
             </tr>
 
-            <!-- Todo item -->
+            {/* <!-- Todo item --> */}
             <tr class="todo">
               <td>Fill gas tank</td>
               <td>Incomplete</td>
@@ -137,11 +130,13 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  {/* <!-- Footer --> */}
   <footer class="footer">
     <p>Copyright © designed by Mihail Valkov</p>
   </footer>
 
-</body>
+    </div>
+  );
+}
 
-</html>
+export default App;
