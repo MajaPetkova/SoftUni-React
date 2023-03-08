@@ -1,96 +1,31 @@
-export const ToDoList =()=>{
-    return (
-        <table class="table">
-        <thead>
-          <tr>
-            <th class="table-header-task">Task</th>
-            <th class="table-header-status">Status</th>
-            <th class="table-header-action">Action</th>
-          </tr>
-        </thead>
-        <tbody>
+import { useEffect, useState } from "react";
+import { ToDoItem } from "./ToDoItem";
 
-          {/* <!-- Todo item --> */}
-          <tr class="todo is-completed">
-            <td>Give dog a bath</td>
-            <td>Complete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
+export const ToDoList = () => {
+  const [toDos, setToDos] = useState([]);
 
-          {/* <!-- Todo item --> */}
-          <tr class="todo is-completed">
-            <td>Do laundry</td>
-            <td>Complete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
+  useEffect(() => {
+    fetch("http://localhost:3030/jsonstore/todos")
+      .then((res) => res.json())
+      .then((data) => setToDos(Object.values(data)));
+  }, []);
 
-          {/* <!-- Todo item --> */}
-          <tr class="todo">
-            <td>Vacuum floor</td>
-            <td>Incomplete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-
-          {/* <!-- Todo item --> */}
-          <tr class="todo is-completed">
-            <td>Feed cat</td>
-            <td>Complete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-
-          {/* <!-- Todo item --> */}
-          <tr class="todo">
-            <td>Change light bulbs</td>
-            <td>Incomplete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-
-          {/* <!-- Todo item --> */}
-          <tr class="todo is-completed">
-            <td>Feed cat</td>
-            <td>Complete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-
-          {/* <!-- Todo item --> */}
-          <tr class="todo">
-            <td>Change light bulbs</td>
-            <td>Incomplete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-
-          {/* <!-- Todo item --> */}
-          <tr class="todo is-completed">
-            <td>Go to Store</td>
-            <td>Completed</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-
-          {/* <!-- Todo item --> */}
-          <tr class="todo">
-            <td>Fill gas tank</td>
-            <td>Incomplete</td>
-            <td class="todo-action">
-              <button class="btn todo-btn">Change status</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    )
+const onChangeHandler =(todoId)=>{
+console.log(todoId)
 }
+
+  return (
+    <table className="table">
+      <thead>
+        <tr>
+          <th className="table-header-task">Task</th>
+          <th className="table-header-status">Status</th>
+          <th className="table-header-action">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+    {toDos.map(x=> <ToDoItem key ={x._id} {...x} onClick={onChangeHandler} />)}
+      </tbody>
+    </table>
+  );
+};

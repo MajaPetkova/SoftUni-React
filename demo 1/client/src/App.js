@@ -1,31 +1,35 @@
-import "./App.css";
+import './App.css';
 
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
-import { Spinner } from "./components/Spinner";
-import { ToDoList } from "./components/ToDoList";
+import { Footer } from './components/Footer';
+import { Header } from './components/Header';
+import { Spinner } from './components/Spinner';
+import { ToDoItem } from './components/ToDoItem';
+import { ToDoList } from './components/ToDoList';
 
 function App() {
   return (
     <div className="App">
-      <Header />
+ <Header/>
 
-      <main class="main">
-        {/* <!-- Section container --> */}
-        <section class="todo-list-container">
-          <h1>Todo List</h1>
 
-          <div class="add-btn-container">
-            <button class="btn">+ Add new Todo</button>
-          </div>
+  <main className="main">
 
-          <div class="table-wrapper">
-            {/* <Spinner/> */}
-            <ToDoList />
-          </div>
-        </section>
-      </main>
-      <Footer />
+    {/* <!-- Section container --> */}
+    <section className="todo-list-container">
+      <h1>Todo List</h1>
+
+      <div className="add-btn-container">
+        <button className="btn">+ Add new Todo</button>
+      </div>
+
+      <div className="table-wrapper">
+
+     {/* <Spinner/> */}
+       <ToDoList/>        
+      </div>
+    </section>
+  </main>
+<Footer/>
     </div>
   );
 }
