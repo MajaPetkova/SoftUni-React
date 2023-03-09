@@ -10,9 +10,21 @@ export const ToDoList = () => {
       .then((data) => setToDos(Object.values(data)));
   }, []);
 
-const onChangeHandler =(todoId)=>{
-console.log(todoId)
-}
+  const onChangeHandler = (todo) => {
+    // console.log(todoId)
+    fetch(`http://localhost:3030/jsonstore/todos/${todo._id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({ ...todo, isCompleted: !todo.isCompleted }),
+    })
+      .then((res) => res.json())
+      .then((modifiedTodo) =>
+        setToDos((oldToDos) =>
+          oldToDos.map((x) => (x._id === modifiedTodo._id ? modifiedTodo : x))
+        ));
+  };
 
   return (
     <table className="table">
@@ -24,7 +36,9 @@ console.log(todoId)
         </tr>
       </thead>
       <tbody>
-    {toDos.map(x=> <ToDoItem key ={x._id} {...x} onClick={onChangeHandler} />)}
+        {toDos.map((x) => (
+          <ToDoItem key={x._id} {...x} onClick={onChangeHandler} />
+        ))}
       </tbody>
     </table>
   );
