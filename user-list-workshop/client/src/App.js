@@ -15,8 +15,7 @@ function App() {
 
     useEffect(()=>{
         userService.getAll()
-        .then (users=> setUsers(users))
-  
+        .then (users => setUsers(users))
     }, [])
  
   return (
