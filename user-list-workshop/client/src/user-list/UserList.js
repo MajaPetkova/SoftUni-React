@@ -16,7 +16,11 @@ export const UserList =(props)=>{
      } )
     }
 
-
+    const detailsCloseHandler= ()=>{
+        setSelectedUser(null)
+    }
+    
+    
     return (     
     <div className="table-wrapper">
     {/* <!-- Overlap components  -->
@@ -90,7 +94,7 @@ export const UserList =(props)=>{
     <!-- </div> --> */}
 
 
-       {selectedUser && <UserDetails user= {selectedUser}/> }
+       {selectedUser && <UserDetails user= {selectedUser} onClose={detailsCloseHandler}/> }
 
     <table className="table">
       <thead>
