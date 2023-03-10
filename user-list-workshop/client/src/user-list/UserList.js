@@ -130,7 +130,7 @@ export const UserList =(props)=>{
         </tr>
       </thead>
       <tbody>
-      {props.users.map(x=> <UserItem key= {x._id} {...x}/>)}
+      {props.users.map(x=> <tr><UserItem key= {x._id} {...x}/></tr>)}
       {/* {users.map(x=> <UserItem key= {x._id} {...x}/>)} */}  
       </tbody>
     </table>

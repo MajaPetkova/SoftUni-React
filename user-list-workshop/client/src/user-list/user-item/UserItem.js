@@ -1,9 +1,12 @@
+import { Fragment } from "react"
+
+
 export const UserItem =(props) =>{
     return (
-        <tr>
+        <Fragment>
           <td>
-            <img src={props.imageUrl}
-              alt="Peter's profile" className="image" />
+            <img src={props.imageUrl || props.blankProfileUrl}
+              alt={`${props.firstName}'s profile`} className="image" />
           </td>
           <td>{props.firstName}</td>
           <td>{props.lastName}</td>
@@ -39,6 +42,6 @@ export const UserItem =(props) =>{
               </svg>
             </button>
           </td>
-        </tr>
+          </Fragment>
     )
 }
