@@ -1,8 +1,8 @@
 export const UserDetails=({user, onClose})=>{
     return (
          <div className="overlay">
-      <div className="backdrop"></div>
-      <div className="modal">
+      <div className="backdrop" onClick={onClose}></div>
+      <div className="modal" >
         <div className="detail-container">
           <header className="headers">
             <h2>User Detail</h2>
