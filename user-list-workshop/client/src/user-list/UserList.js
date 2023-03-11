@@ -5,6 +5,7 @@ import { UserItem } from "./user-item/UserItem";
 import { UserDetails } from "./user-details/UserDetails";
 import { UserEdit } from "./user-edit/UserEdit";
 import{ UserActions} from "./UserListConstants"
+import { UserDelete } from "./user-delete/UserDelete";
 
 // export const UserList =({users})=>{
 export const UserList = (props) => {
@@ -105,6 +106,9 @@ export const UserList = (props) => {
         <UserEdit user={userAction.user} onClose={closeHandler} />
       )}
 
+      {userAction.action == UserActions.Delete && (
+        <UserDelete user={userAction.user} onClose={closeHandler} />
+      )}
 
       <table className="table">
         <thead>
