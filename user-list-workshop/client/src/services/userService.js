@@ -25,3 +25,15 @@ export const create= async(userData) =>{
     
     return result.user;
 }  
+export const update= async(userData) =>{
+    const res = await fetch(`${baseUrl}/` + userData, {
+        method: "PUT",
+        headers:{
+            "content-type": "application/json"
+        }, 
+        body: JSON.stringify(userData)
+    } );   
+    const result= await res.json(); 
+    
+    return result.user;
+}  
