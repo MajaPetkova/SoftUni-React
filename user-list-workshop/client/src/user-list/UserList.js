@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import * as userService from "../services/userService";
 
 import { UserItem } from "./user-item/UserItem";
@@ -9,8 +9,14 @@ import { UserCreate } from "./user-create/UserCreate";
 import { UserActions } from "./UserListConstants";
 
 // export const UserList =({users})=>{
-export const UserList = (props) => {
+export const UserList = () => {
   const [userAction, setUserAction] = useState({ user: null, action: null });
+  const [users, setUsers] = useState([]);
+
+  useEffect(()=>{
+      userService.getAll()
+      .then (users => setUsers(users))
+  }, []);
 
   const userActionClickHandler = (userId, actionType) => {
     userService.getOne(userId).then((user) => {
@@ -33,8 +39,9 @@ export const UserList = (props) => {
    
     userService.create(userData)
     .then((user)=>{
-        console.log(user)
-        closeHandler()
+        console.log(user);
+        setUsers(oldUsers=>[...oldUsers, user] )
+        closeHandler();
     })
     
   };
@@ -225,7 +232,7 @@ export const UserList = (props) => {
             </tr>
           </thead>
           <tbody>
-            {props.users.map((x) => (
+            {users.map((x) => (
               <tr key={x._id}>
                 <UserItem {...x} onActionClick={userActionClickHandler} />
               </tr>

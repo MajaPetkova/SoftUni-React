@@ -22,6 +22,6 @@ export const create= async(userData) =>{
         body: JSON.stringify(userData)
     } );   
     const result= await res.json(); 
-    console.log(result)
-    return result;
+    
+    return result.user;
 }  

@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import * as userService from "./services/userService"
 import "./App.css" ;
 
 import { Header } from "./components/common/Header";
@@ -11,13 +9,7 @@ import { UserList } from "./user-list/UserList";
 
 
 function App() {
-    const [users, setUsers] = useState([]);
-
-    useEffect(()=>{
-        userService.getAll()
-        .then (users => setUsers(users))
-    }, [])
- 
+    
   return (
     <div className="App">
       <header className="App-header">
@@ -25,7 +17,7 @@ function App() {
         <main className="main">
         <section className="card users-container">
          <Search/>
-         <UserList users={users}/>
+         <UserList/>
         </section>
         </main>
         <Footer/>
