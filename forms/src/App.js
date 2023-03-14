@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./App.css";
 
 function App() {
+  const infoRef = useRef();
   const [values, setValues] = useState({
     username: "",
     password: "",
@@ -11,7 +12,7 @@ function App() {
     userType: "individual",
     tac: false,
     egn: "",
-    eik: ""
+    eik: "",
   });
   //   const [username, setUsername] = useState("");
   //   const [password, setPassword] = useState("");
@@ -21,19 +22,26 @@ function App() {
   //  const [userType, setUserType] = useState("corporate");
   //  const [tac, setUserTac] = useState(false);
 
+  useEffect(() => {
+    if (values.username && values.age) {
+      infoRef.current.value = `${values.username} - ${values.age}`;
+    }
+  }, [values.username, values.age]);
+
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
-      [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
-    //   [e.target.name]: e.target.value,
+      [e.target.name]:
+        e.target.type === "checkbox" ? e.target.checked : e.target.value,
+      //   [e.target.name]: e.target.value,
     }));
   };
-  
-//   const checkboxChangeHandler = (e) => {
-//     setValues((state) => ({
-//         ...state,
-//       }));
-//   };
+
+  //   const checkboxChangeHandler = (e) => {
+  //     setValues((state) => ({
+  //         ...state,
+  //       }));
+  //   };
 
   //   const onChangeHandler = (e) => {
   //     setUsername(e.target.value);
@@ -122,10 +130,26 @@ function App() {
             />
           </div>
           <div>
-            <label htmlFor="identifier" >{values.userType == "individual" ? "EGN: " : "EIK: "}</label>
-            {values.userType== "individual" 
-            ? <input type="text" id="identifier" name="egn" value={values.egn} onChange={changeHandler}/> 
-            : <input type="text" id="identifier" name="eik" value={values.eik} onChange={changeHandler}/>}
+            <label htmlFor="identifier">
+              {values.userType == "individual" ? "EGN: " : "EIK: "}
+            </label>
+            {values.userType == "individual" ? (
+              <input
+                type="text"
+                id="identifier"
+                name="egn"
+                value={values.egn}
+                onChange={changeHandler}
+              />
+            ) : (
+              <input
+                type="text"
+                id="identifier"
+                name="eik"
+                value={values.eik}
+                onChange={changeHandler}
+              />
+            )}
           </div>
           <div>
             <label htmlFor="tac">Terms and Conditions: </label>
@@ -137,8 +161,20 @@ function App() {
               onChange={changeHandler}
             />
           </div>
-          <button type="submit" disabled={!values.tac}>Register</button>
+          <button type="submit" disabled={!values.tac}>
+            Register
+          </button>
           {/* <input type="submit" value="Register" disabled={!values.tag}/> */}
+
+          <div>
+            <label htmlFor="uncontrolled-input">Uncontrolled Input: </label>
+            <input
+              type="text"
+              name="uncontrolled"
+              id="uncontrolled-input"
+              ref={infoRef}
+            ></input>
+          </div>
         </form>
       </header>
     </div>
