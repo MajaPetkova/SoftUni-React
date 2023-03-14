@@ -9,7 +9,9 @@ function App() {
     bio: "",
     gender: "f",
     userType: "individual",
-    tac: true,
+    tac: false,
+    egn: "",
+    eik: ""
   });
   //   const [username, setUsername] = useState("");
   //   const [password, setPassword] = useState("");
@@ -22,23 +24,23 @@ function App() {
   const changeHandler = (e) => {
     setValues((state) => ({
       ...state,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.type === 'checkbox' ? e.target.checked : e.target.value
+    //   [e.target.name]: e.target.value,
     }));
   };
   
-  const checkboxChangeHandler = (e) => {
-    setValues((state) => ({
-        ...state,
-        [e.target.name]:!state[e.target.name] ,
-      }));
-  };
+//   const checkboxChangeHandler = (e) => {
+//     setValues((state) => ({
+//         ...state,
+//       }));
+//   };
 
   //   const onChangeHandler = (e) => {
   //     setUsername(e.target.value);
   //   };
   const submitHandler = (e) => {
     e.preventDefault();
-    let values = Object.fromEntries(new FormData(e.target));
+    // let values = Object.fromEntries(new FormData(e.target));
     console.log(values);
   };
 
@@ -120,16 +122,23 @@ function App() {
             />
           </div>
           <div>
+            <label htmlFor="identifier" >{values.userType == "individual" ? "EGN: " : "EIK: "}</label>
+            {values.userType== "individual" 
+            ? <input type="text" id="identifier" name="egn" value={values.egn} onChange={changeHandler}/> 
+            : <input type="text" id="identifier" name="eik" value={values.eik} onChange={changeHandler}/>}
+          </div>
+          <div>
             <label htmlFor="tac">Terms and Conditions: </label>
             <input
               type="checkbox"
               id="tac"
               name="tac"
               checked={values.tac}
-              onChange={checkboxChangeHandler}
+              onChange={changeHandler}
             />
           </div>
-          <input type="submit" value="Login" />
+          <button type="submit" disabled={!values.tac}>Register</button>
+          {/* <input type="submit" value="Register" disabled={!values.tag}/> */}
         </form>
       </header>
     </div>
