@@ -18,8 +18,8 @@ export const UserList = () => {
       .then (users => setUsers(users))
   }, []);
 
-  const userActionClickHandler = (userId, actionType) => {
-    userService.getOne(userId).then((user) => {
+  const userActionClickHandler =(userId, actionType) => {
+     userService.getOne(userId).then((user) => {
       setUserAction({
         user: user,
         action: actionType,
@@ -27,15 +27,20 @@ export const UserList = () => {
     });
   };
 
+  const createUserClickHandler = () =>{
+    setUserAction({
+          action: UserActions.Add,
+    });
+  }
   const closeHandler = () => {
     setUserAction({ user: null, action: null });
   };
 
-  const userCreateHandler = (e) => {
-    e.preventDefault();
-    const formData= new FormData (e.target);
-    const {firstName, lastName, email, imageUrl, phoneNumber, ...address}= Object.fromEntries(formData);
-    const userData= {firstName, lastName, email, imageUrl, phoneNumber, address}
+  const userCreateHandler = (userData) => {
+    // e.preventDefault();
+    // const formData= new FormData (e.target);
+    // const {firstName, lastName, email, imageUrl, phoneNumber, ...address}= Object.fromEntries(formData);
+    // const userData= {firstName, lastName, email, imageUrl, phoneNumber, address}
    
     userService.create(userData)
     .then((user)=>{
@@ -44,7 +49,21 @@ export const UserList = () => {
         closeHandler();
     })
     
-  };
+   };
+   const userUpdateHandler = (e)=>{
+    e.preventDefault();
+
+    // const formData= new FormData (e.target);
+    // const {firstName, lastName, email, imageUrl, phoneNumber, ...address}= Object.fromEntries(formData);
+    // const userData= {firstName, lastName, email, imageUrl, phoneNumber, address}
+
+    // userService.update(userData)
+    // .then((user)=>{
+    //     console.log(user)
+    //   setUsers(oldUsers=> [...oldUsers, user]);
+    //   closeHandler();
+    // })
+}
 
   return (
     <>
@@ -127,7 +146,7 @@ export const UserList = () => {
         )}
 
         {userAction.action == UserActions.Edit && (
-          <UserEdit user={userAction.user} onClose={closeHandler} />
+          <UserEdit user={userAction.user} onClose={closeHandler} onUserUpdate={userUpdateHandler}  />
         )}
 
         {userAction.action == UserActions.Delete && (
@@ -243,7 +262,7 @@ export const UserList = () => {
       </div>
       <button
         className="btn-add btn"
-        onClick={() => userActionClickHandler(null, UserActions.Add)}
+        onClick={ createUserClickHandler}
       >
         Add new user
       </button>
