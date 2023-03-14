@@ -20,10 +20,13 @@ export const create= async(userData) =>{
             "content-type": "application/json"
         }, 
         body: JSON.stringify(userData)
-    } );   
-    const result= await res.json(); 
-    
-    return result.user;
+    });  
+     if(res.ok){
+         const result= await res.json();
+         return result.user;
+     }else{
+        throw {message: "Unable to create user"}
+     }
 }  
 export const update= async(userData) =>{
     const res = await fetch(`${baseUrl}/` + userData, {

@@ -45,7 +45,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
      [e.target.name]: number < 0
      }))
   }
-  
+ const isFormInvalid= Object.values(errors).some(x=> x)
   
   
   return (
@@ -270,7 +270,7 @@ export const UserCreate = ({ onClose, onUserCreate }) => {
               </div>
             </div>
             <div id="form-actions">
-              <button id="action-save" className="btn" type="submit">
+              <button id="action-save" className="btn" type="submit" disabled={isFormInvalid}>
                 Save
               </button>
               <button
