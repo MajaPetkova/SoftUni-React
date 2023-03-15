@@ -1,5 +1,5 @@
 import './App.css';
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 import { Home } from './components/Home';
 import { Pricing } from './components/Pricing';
 import {About} from "./components/About"
@@ -19,6 +19,7 @@ function App() {
       <Route path='/about' element={<About/>}/>
       <Route path='/pricing' element={<Pricing/>}/>
       <Route path='/products/:productId' element={<Products/>}/>
+      <Route path='/millennium-falcon' element={<Navigate to="/products/10" replace/>}>Millennium Falcon</Route>
       <Route path='/contacts' element={<Contacts/>}/>
       <Route path='/*' element={<h2>Not Found</h2>}/>
      </Routes>
