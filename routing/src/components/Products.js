@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 
 export const Products = () => {
   // const params= useParams();
   const [starship, setStarship] = useState({});
   const { productId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+//   console.log(location)
 
   useEffect(() => {
     fetch(`https://swapi.dev/api/starships/${productId}/`)
@@ -14,6 +16,7 @@ export const Products = () => {
         setStarship(data);
       });
   }, [productId]);
+
   const nextProductHandler = () => {
     //  TODO: redirect to next product
     navigate(`/products/${Number(productId) + 1}`)
