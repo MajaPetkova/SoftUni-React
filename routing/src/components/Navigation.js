@@ -23,9 +23,11 @@ export default function Navigation() {
         //    })}
              className={setStyle}
             >
-            Products
+            Starship
             </NavLink></li>
+            <li><Link to="/products">Starships</Link></li>
       </ul>
+
     </nav>
   );
 }

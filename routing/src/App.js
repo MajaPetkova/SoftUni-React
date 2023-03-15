@@ -5,7 +5,8 @@ import { Pricing } from './components/Pricing';
 import {About} from "./components/About"
 import { Contacts } from './components/Contacts';
 import Navigation from './components/Navigation';
-import { Products } from './components/Products';
+import { Starship } from './components/Starship';
+import StarshipList from './components/StarshipList';
 
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <Route path='/' element={<Home/>}/>
       <Route path='/about' element={<About/>}/>
       <Route path='/pricing' element={<Pricing/>}/>
-      <Route path='/products/:productId' element={<Products/>}/>
+      <Route path='/products' element={<StarshipList/>}/>
+      <Route path='/products/:productId/*' element={<Starship/>}/>
       <Route path='/millennium-falcon' element={<Navigate to="/products/10" replace/>}>Millennium Falcon</Route>
       <Route path='/contacts' element={<Contacts/>}/>
       <Route path='/*' element={<h2>Not Found</h2>}/>
