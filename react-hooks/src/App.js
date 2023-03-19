@@ -1,4 +1,5 @@
 // import { useEffect, useState } from "react";
+import { TaskContext } from "./contexts/TaskContext";
 import { TaskList } from "./components/TaskList";
 import styles from "./App.module.css";
 import { CreateTask } from "./components/CreateTask";
@@ -38,6 +39,7 @@ function App() {
     })
   };
   return (
+    <TaskContext.Provider value="Pesho">
     <div className={styles["site-wrapper"]}>
       <h1>TODO APP</h1>
       <main>
@@ -45,6 +47,7 @@ function App() {
         <CreateTask taskCreateHandler={taskCreateHandler} />
       </main>
     </div>
+    </TaskContext.Provider>
   );
 }
 
