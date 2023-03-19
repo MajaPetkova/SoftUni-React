@@ -3,6 +3,8 @@ import { TaskList } from "./components/TaskList";
 import styles from "./App.module.css";
 import { CreateTask } from "./components/CreateTask";
 import { useFetch } from "./components/hooks/useFetch";
+import { useTodosApi } from "./components/hooks/useTodos";
+
 
 function App() {
   // const [tasks, setTasks] = useState([]);
@@ -17,6 +19,9 @@ function App() {
     []
   );
 
+  const {removeTodo} = useTodosApi()
+
+
   const taskCreateHandler = (newTask) => {
     setTasks((state) => [
       ...state,
@@ -27,7 +32,10 @@ function App() {
     ]);
   };
   const taskDeleteHandler = (taskId) => {
-    setTasks((state) => state.filter((x) => x._id !== taskId));
+    removeTodo(taskId)
+    .then(() =>{
+      setTasks((state) => state.filter((x) => x._id !== taskId));
+    })
   };
   return (
     <div className={styles["site-wrapper"]}>
