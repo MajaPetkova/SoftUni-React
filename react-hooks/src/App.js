@@ -39,11 +39,11 @@ function App() {
     })
   };
   return (
-    <TaskContext.Provider value="Pesho">
+    <TaskContext.Provider value={{taskDeleteHandler}}>
     <div className={styles["site-wrapper"]}>
       <h1>TODO APP</h1>
       <main>
-        {isLoading ? <p>Loading...</p> : <TaskList tasks={tasks} taskDeleteHandler={taskDeleteHandler} />}
+        {isLoading ? <p>Loading...</p> : <TaskList tasks={tasks}  />}
         <CreateTask taskCreateHandler={taskCreateHandler} />
       </main>
     </div>
