@@ -19,11 +19,14 @@ function App() {
       },
     ]);
   };
+  const taskDeleteHandler =(taskId)=>{
+    setTasks(state => state.filter(x=> x._id !== taskId))
+  }
   return (
     <div className={styles["site-wrapper"]}>
       <h1>TODO APP</h1>
       <main>
-        <TaskList tasks={tasks} />
+        <TaskList tasks={tasks}  taskDeleteHandler={taskDeleteHandler}/>
         <CreateTask taskCreateHandler={taskCreateHandler} />
       </main>
     </div>

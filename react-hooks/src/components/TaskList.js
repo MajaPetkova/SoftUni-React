@@ -1,10 +1,16 @@
+import { useEffect } from "react";
 import { TaskItem } from "./TaskItem";
 
-export const TaskList = ({ tasks }) => {
-  return (
+export const TaskList = ({ tasks, taskDeleteHandler }) => {
+     return (
     <ul>
       {tasks.map((x) => (
-        <TaskItem key={x._id} title={x.title} />
+        <TaskItem
+          key={x._id}
+          taskId={x._id}
+          title={x.title}
+          taskDeleteHandler={taskDeleteHandler}
+        />
       ))}
     </ul>
   );
