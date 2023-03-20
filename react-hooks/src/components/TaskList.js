@@ -10,8 +10,9 @@ export const TaskList = ({
       {tasks.map((x) => (
         <TaskItem
           key={x._id}
-          taskId={x._id}
-          title={x.title}
+          task={x}
+          // taskId={x._id}
+          // title={x.title}
         //   taskDeleteHandler={taskDeleteHandler}
         />
       ))}

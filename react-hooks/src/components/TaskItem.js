@@ -1,8 +1,10 @@
 import { useEffect, useContext } from "react";
 import { TaskContext } from "../contexts/TaskContext";
+import styles from "./TaskItem.module.css";
 
-export const TaskItem =({title, taskId})=>{
-    const {taskDeleteHandler}= useContext(TaskContext);
+
+export const TaskItem =({task})=>{
+    const {taskDeleteHandler, toggleTask}= useContext(TaskContext);
 
     useEffect(()=>{
         console.log("Mount");
@@ -13,8 +15,14 @@ export const TaskItem =({title, taskId})=>{
     }, []);
 
     return(
-        <li>{title} 
-          <button onClick={()=>taskDeleteHandler(taskId)}>x</button>
+        <li>
+            <span 
+            className={task.isCompleted ? styles.completed : ""}
+            onClick={()=>toggleTask(task)}
+            >
+                {task.title}
+            </span> 
+          <button onClick={()=>taskDeleteHandler(task._id)}>x</button>
         </li>
     )
 }

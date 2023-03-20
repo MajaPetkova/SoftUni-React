@@ -6,7 +6,6 @@ import { CreateTask } from "./components/CreateTask";
 import { useFetch } from "./components/hooks/useFetch";
 import { useTodosApi } from "./components/hooks/useTodos";
 
-
 function App() {
   // const [tasks, setTasks] = useState([]);
 
@@ -20,33 +19,43 @@ function App() {
     []
   );
 
-  const {removeTodo} = useTodosApi()
+  const { removeTodo, createTodo, updateTodo } = useTodosApi();
 
+  const taskCreateHandler = async (newTask) => {
+    const createdTask = await createTodo(newTask);
 
-  const taskCreateHandler = (newTask) => {
     setTasks((state) => [
       ...state,
-      {
-        _id: state[state.length - 1]?._id + 1 || 1,
-        title: newTask,
-      },
+      createdTask,
+      // {
+      //   _id: state[state.length - 1]?._id + 1 || 1,
+      //   title: newTask,
+      // },
     ]);
   };
   const taskDeleteHandler = (taskId) => {
-    removeTodo(taskId)
-    .then(() =>{
+    removeTodo(taskId).then(() => {
       setTasks((state) => state.filter((x) => x._id !== taskId));
-    })
+    });
   };
+
+  const toggleTask = async (task) => {
+    const updatedTask= {...task, isCompleted : !task.isCompleted  }
+
+    await updateTodo(task._id, updatedTask)
+    setTasks((state) =>state.map((x) => x._id == task._id ? updatedTask : x)
+    );
+  };
+
   return (
-    <TaskContext.Provider value={{taskDeleteHandler}}>
-    <div className={styles["site-wrapper"]}>
-      <h1>TODO APP</h1>
-      <main>
-        {isLoading ? <p>Loading...</p> : <TaskList tasks={tasks}  />}
-        <CreateTask taskCreateHandler={taskCreateHandler} />
-      </main>
-    </div>
+    <TaskContext.Provider value={{ taskDeleteHandler, toggleTask }}>
+      <div className={styles["site-wrapper"]}>
+        <h1>TODO APP</h1>
+        <main>
+          {isLoading ? <p>Loading...</p> : <TaskList tasks={tasks} />}
+          <CreateTask taskCreateHandler={taskCreateHandler} />
+        </main>
+      </div>
     </TaskContext.Provider>
   );
 }
