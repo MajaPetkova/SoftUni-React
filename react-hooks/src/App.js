@@ -40,15 +40,26 @@ function App() {
   };
 
   const toggleTask = async (task) => {
-    const updatedTask= {...task, isCompleted : !task.isCompleted  }
+    const updatedTask = { ...task, isCompleted: !task.isCompleted };
 
-    await updateTodo(task._id, updatedTask)
-    setTasks((state) =>state.map((x) => x._id == task._id ? updatedTask : x)
+    await updateTodo(task._id, updatedTask);
+    setTasks((state) =>
+      state.map((x) => (x._id == task._id ? updatedTask : x))
+    );
+  };
+
+  const changeTitleHandler = async (task, newTitle) => {
+    const updatedTask = { ...task, title:newTitle };
+    await updateTodo(task._id, updatedTask);
+    setTasks((state) =>
+      state.map((x) => (x._id == task._id ? updatedTask : x))
     );
   };
 
   return (
-    <TaskContext.Provider value={{ taskDeleteHandler, toggleTask }}>
+    <TaskContext.Provider
+      value={{ taskDeleteHandler, toggleTask, changeTitleHandler }}
+    >
       <div className={styles["site-wrapper"]}>
         <h1>TODO APP</h1>
         <main>
