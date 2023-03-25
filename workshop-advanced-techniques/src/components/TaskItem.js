@@ -2,8 +2,6 @@ import { Component } from "react";
 import styles from "./TaskItem.module.css"
 import TaskContext from "../contexts/TaskContext";
 
-
-
 class TaskItem extends Component{
 
 
