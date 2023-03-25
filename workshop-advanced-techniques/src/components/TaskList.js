@@ -1,6 +1,6 @@
 import { Component } from "react";
 import TaskItem from "./TaskItem"
-
+import TaskContext from "../contexts/TaskContext";
 
 class TaskList extends Component {
 constructor (props){
@@ -39,14 +39,33 @@ addNewTaskHandler (e){
       newTask: ""
    }))
 }
+taskClickHandler(taskTitle){
+   this.setState(state =>({
+       tasks:state.tasks.map (x=>x.title ===taskTitle ? {...x, isCompleted: !x.isCompleted} : x)
+   }))
+}
+taskDeleteHandler(e, taskTitle){
+  e.stopPropagation()
+this.setState(state =>({
+tasks: state.tasks.filter(x=> x.title !== taskTitle )
+}))
 
-  render() {
+}
+
+render() {
     return (
-        <div>
+      <TaskContext.Provider value={{taskDeleteHandler: this.taskDeleteHandler.bind(this)}}>
             <h2>Current character: {this.state.character.name}</h2>
             <h1>ToDo List</h1>
       <ul>
-        {this.state.tasks.map(x=><TaskItem key={x.title} title={x.title} isCompleted={x.isCompleted}/>)}
+        {this.state.tasks.map(x=>
+             <TaskItem 
+             key={x.title} 
+             title={x.title} 
+             isCompleted={x.isCompleted}
+             onClick={this.taskClickHandler.bind(this)}
+             />
+        )}
         {/* <TaskItem title ="Task 1"/>
         <TaskItem title ="Task 2"/>
         <TaskItem title ="Task 3"/> */}
@@ -63,8 +82,9 @@ addNewTaskHandler (e){
         />
         <input type="submit" value="Add"/>
       </form>
-      </div>
-    );
+      
+    </TaskContext.Provider>
+    )
   }
 }
 export default TaskList;
