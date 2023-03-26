@@ -1,4 +1,4 @@
-import { useState,useEffect } from "react";
+import { useState, useContext } from "react";
 import * as userService from "../services/userService";
 
 import { UserItem } from "./user-item/UserItem";
@@ -7,16 +7,18 @@ import { UserEdit } from "./user-edit/UserEdit";
 import { UserDelete } from "./user-delete/UserDelete";
 import { UserCreate } from "./user-create/UserCreate";
 import { UserActions } from "./UserListConstants";
+import { UserContext } from "../context/UserContext";
 
 // export const UserList =({users})=>{
 export const UserList = () => {
+  const {users, addUser} = useContext(UserContext)
   const [userAction, setUserAction] = useState({ user: null, action: null });
-  const [users, setUsers] = useState([]);
+  // const [users, setUsers] = useState([]);
 
-  useEffect(()=>{
-      userService.getAll()
-      .then (users => setUsers(users))
-  }, []);
+  // useEffect(()=>{
+  //     userService.getAll()
+  //     .then (users => setUsers(users))
+  // }, []);
 
   const userActionClickHandler =(userId, actionType) => {
      userService.getOne(userId).then((user) => {
@@ -44,8 +46,8 @@ export const UserList = () => {
    
     userService.create(userData)
     .then((user)=>{
-        console.log(user);
-        setUsers(oldUsers=>[...oldUsers, user] )
+        // console.log(user);
+       addUser (user)
         closeHandler();
     })
     .catch(err=>{
