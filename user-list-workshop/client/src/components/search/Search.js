@@ -8,14 +8,16 @@ export const Search = () => {
 
   const onSearchChange = (e) => {
     setSearch(e.target.value);
+    filterUsers(e.target.value, criteria);
   };
 
   const onSearchSubmit = (e) => {
     e.preventDefault();
-    filterUsers(search, criteria)
+    filterUsers(search, criteria);
   };
   const onSearchCriteriaChange = (e) => {
     setCriteria(e.target.value);
+    filterUsers(search, e.target.value);
   };
   return (
     <form className="search-form" onSubmit={onSearchSubmit}>
